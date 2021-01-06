@@ -22,7 +22,7 @@ return [
         ]
     ],[
         'name' => 'QL. San Pham',
-        'icon' => 'fa-iamge',
+        'icon' => 'fa-grav ',
         'route' => 'product.index',
         'items' => [
             [

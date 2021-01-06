@@ -72,13 +72,14 @@
                         <ul class="treeview-menu">
                             @foreach($m['items'] as $mc)
                             <li><a href="{{Route::has($mc['route']) ? route($mc['route']) : '#'}}">
-                                    <i class="fa {{$mc['icon']}}"></i>
+                                    <i class="fa {{$mc['icon']}}"></i> {{$mc['name']}}
+
                                 </a></li>
                             @endforeach
                         </ul>
                         @endif
                     </li>
-                    @endforech
+                    @endforeach
                 </ul>
             </section>
         </aside>

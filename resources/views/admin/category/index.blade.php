@@ -37,7 +37,7 @@
                 <td>{{$cat->id}} </td>
                 <td>{{$cat->name}} </td>
                 <td>{{$cat->status}} </td>
-                <td>{{$cat->create_at}} </td>
+                <td>{{$cat->created_at}} </td>
                 <td>
 
                     <form method="POST" action="{{route('category.destroy', ['id' =>$cat->id] ) }}">
@@ -46,8 +46,7 @@
 
                         <a href="{{route('category.edit', ['id'=>$cat->id])}}" type="button"
                             class="btn btn-xs btn-primary">Edit</a>
-                        <button type="button" class="btn btn-xs btn-danger"
-                            onclick="return confirm('Are you sure!')">Delete
+                        <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure!')">Delete
                         </button>
                     </form>
 
