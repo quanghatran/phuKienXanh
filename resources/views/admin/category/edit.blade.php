@@ -3,7 +3,8 @@
 
 @section('main')
 <div class="container">
-    <form action="{{route('category.update', ['id' = $model->id])}}" method="POST" role="form">
+
+    <form action="{{route('category.store', ['id'=>$model->id] )}}" method="POST" role="form">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <legend>Form add new</legend>
