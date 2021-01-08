@@ -38,6 +38,7 @@ class ProductController extends Controller
         // $request->only('name','status'); 
         // hàm để lấy ra những tham số trong trường thông tin
         //test add and commit 
+        // hello human
 
         Product::where(['id' => $id])->update($request->all());
         return redirect()->route('product.index');
