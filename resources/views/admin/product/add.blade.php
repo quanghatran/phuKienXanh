@@ -42,9 +42,10 @@
 
                 <div class="form-group">
                     <label for="">Các ảnh khác <a href="#modal-files" data-toggle="modal" type="button" class="btn btn-info">Select</a></label>
-                    <input type="" name="image_list" id="image_list">
-                    <!-- <img src="" alt="" id="image_list" name="image_list"> -->
+                    <input type="hidden" name="image_list" id="image_list">
+                    <div class="row" id="image_show_list">
 
+                    </div>
                 </div>
 
             </div>
@@ -150,7 +151,7 @@
                 <h4 class="modal-title">Quản lý file</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{{url('../file')}}/dialog.php?akey=wJHNmWuMzMPv5WwVT7BpmgHIA78UYXJ3JknWlBAdr2Y&field_id=image" style="width: 100%; height: 500px; border:0;overflow-y:auto"></iframe>
+                <iframe src="{{url('../file')}}/dialog.php?akey=wJHNmWuMzMPv5WwVT7BpmgHIA78UYXJ3JknWlBAdr2Y&field_id=image_list" style="width: 100%; height: 500px; border:0;overflow-y:auto"></iframe>
 
             </div>
             <div class="modal-footer">
@@ -177,8 +178,15 @@
     $('#modal-files').on('hide.bs.modal', function() {
         var _imgs = $('input#image_list').val();
         var img_list = $.parseJSON(_imgs);
-        console.log(_imgs);
-        console.log(img_list);
+        var _html = '';
+
+        for (var i = 0; i < img_list.length; i++) {
+            _html += '<div class="col-md-3 thumbnail">';
+            _html += '<img src="' + img_list[i] + '" alt="">';
+            _html += '</div>';
+        }
+
+        $('#image_show_list').html(_html);
     })
 </script>
 
