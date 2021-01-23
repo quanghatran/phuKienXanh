@@ -15,6 +15,18 @@
     <link rel="stylesheet" href="{{url('admin/')}}/css/style.css" />
     @yield('css')
 
+    <script type="text/javascript">
+        var base_url = function() {
+            // console.log("{{url('..')}}")
+            // dùng (url..) như của Quân
+            return "{{url('..')}}";
+        }
+
+        var akey = function() {
+            return 'wJHNmWuMzMPv5WwVT7BpmgHIA78UYXJ3JknWlBAdr2Y';
+        }
+    </script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -41,8 +53,7 @@
 
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{Auth::user()->name}} <b
-                                class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{Auth::user()->name}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Thông tin</a></li>
                             <li><a href="{{route('logout')}}">Thoát tài khoản</a></li>
@@ -58,7 +69,7 @@
             <section class="sidebar">
                 <ul class="sidebar-menu" data-widget="tree">
                     @foreach($menus as $m)
-                    <?php $class =! empty($m['items']) ? 'treeview' : ''; ?>
+                    <?php $class = !empty($m['items']) ? 'treeview' : ''; ?>
                     <li class="{{$class}}">
                         <a href="{{Route::has($m['route']) ? route($m['route']) : '#' }}">
                             <i class="fa {{$m['icon']}}"></i> <span>{{$m['name']}}</sapn>

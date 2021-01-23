@@ -12,8 +12,6 @@
 Route::resources([
     'category' => 'CategoryController',
     'product' => 'ProductController',
-    'account' => 'UserController',
+    'user' => 'UserController',
     'banner' => 'BannerController'
-]);   
-
-?>
+]);

@@ -1,21 +1,22 @@
 @extends('admin.master')
 
-@section('title', 'Thêm mới sản phẩm')
+@section('title', 'Sửa sản phẩm')
 
 @section('main')
 
 <div class="box-body">
 
-    <form action="{{route('product.store')}}" method="POST" role="form">
+    <form action="{{route('product.update', ['id'=> $model->id])}}" method="POST" role="form">
 
         @csrf
+        <input type="hidden" name="_method" value="PUT">
         <div class="row">
             <div class="col-md-9">
 
                 <!-- name product -->
                 <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="input files">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="input files" value="{{$model->name}}">
                     @if($errors->has('name'))
                     {{$errors->first('name')}}
                     @endif()
@@ -24,7 +25,7 @@
                 <!-- slug product -->
                 <div class="form-group">
                     <label for="">Đường dẫn SEO</label>
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="input files">
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="input files" value="{{$model->slug}}">
                     @if($errors->has('slug'))
                     {{$errors->first('slug')}}
                     @endif()
@@ -37,14 +38,27 @@
                     <label for="">Nội dung sản phẩm</label>
                     <!-- <input type="text" class="form-control" name="content" placeholder="input files"> -->
                     <textarea name="content" id="content" class="form-control">
+                    {{$model->content}}
                     </textarea>
                 </div>
 
                 <div class="form-group">
+                    <?php
+                    $images = json_decode($model->image_list);
+                    ?>
                     <label for="">Các ảnh khác <a href="#modal-files" data-toggle="modal" type="button" class="btn btn-info">Select</a></label>
-                    <input type="hidden" name="image_list" id="image_list">
+                    <input type="hidden" name="image_list" id="image_list" value="{{$model->image_list}}">
                     <div class="row" id="image_show_list">
-
+                        @if(is_array($images))
+                        <div class="row">
+                            <hr>
+                            @foreach($images as $img)
+                            <div class="col-md-4">
+                                <img src="{{$img}}" alt="" width="100%">
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
                     </div>
                 </div>
 
@@ -58,7 +72,8 @@
                     <select name="category_id" class="form-control">
                         <option value="">Chọn 1</option>
                         @foreach($cats as $cat)
-                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                        <?php $selected = $cat->id == $model->category_id ? 'selected' : ''; ?>
+                        <option {{$selected}} value="{{$cat->id}}">{{$cat->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -66,7 +81,7 @@
                 <!-- price product -->
                 <div class="form-group">
                     <label for="">Giá sản phẩm</label>
-                    <input type="text" class="form-control" name="price" placeholder="input files">
+                    <input type="text" class="form-control" name="price" placeholder="input files" value="{{$model->price}}">
                     @if($errors->has('price'))
                     {{$errors->first('price')}}
                     @endif()
@@ -75,7 +90,7 @@
                 <!-- sale price -->
                 <div class="form-group">
                     <label for="">Giá khuyến mãi</label>
-                    <input type="text" class="form-control" name="sale_price" placeholder="input files">
+                    <input type="text" class="form-control" name="sale_price" placeholder="input files" value="{{$model->sale_price}}">
                     @if($errors->has('sale_price'))
                     {{$errors->first('sale_price')}}
                     @endif()
@@ -86,13 +101,13 @@
                     <label for="">Trạng thái</label>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="status" id="input" value="1" checked>
+                            <input type="radio" name="status" id="input" value="1" <?php echo $model->status == 1 ? 'checked' : ''; ?>>
                             Hiển thị
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="status" id="input" value="0">
+                            <input type="radio" name="status" id="input" value="0" <?php echo $model->status == 0 ? 'checked' : ''; ?>>
                             Ẩn
                         </label>
                     </div>
@@ -103,12 +118,12 @@
                     <label for="">Ảnh sản phẩm</label>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" id="image" name="image" placeholder="input files">
+                        <input type="text" class="form-control" id="image" name="image" placeholder="input files" value="{{$model->image    }}">
                         <span class="input-group-btn">
                             <a href="#modal-file" data-toggle="modal" type="button" class="btn btn-default">Select</a>
                         </span>
                     </div>
-                    <img src="" alt="" id="show_img" style="width: 100%; margin-top: 20px">
+                    <img src="{{$model->image}} " alt="{{$model->name}}" id="show_img" style="width: 100%; margin-top: 20px">
 
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
