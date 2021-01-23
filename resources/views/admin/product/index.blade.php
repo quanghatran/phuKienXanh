@@ -26,7 +26,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Status</th>
-                <!-- <th>Cateat</th> -->
+                <th>Category</th>
                 <th></th>
             </tr>
 
@@ -39,7 +39,8 @@
 
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="{{url('uploads')}}/{{$pro->image}}" alt="Image" width="50">
+                            <img class="media-object" src="{{$pro->image}}" alt="Image" width="50" height="50" style="background-size: cover;">
+                            <!-- <img class="media-object" src="{{url('uploads')}}/{{$pro->image}}" alt="Image" width="50"> -->
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{$pro->name}}</h4>
@@ -49,7 +50,7 @@
 
                 </td>
                 <td>{{$pro->status}} </td>
-                <!-- <td>{{$pro->created_at}} </td> -->
+                <td>{{$pro->cat->name}} </td>
                 <td style="width: 100px;">
 
                     <form method="POST" action="{{route('product.destroy', ['id' =>$pro->id] ) }}">

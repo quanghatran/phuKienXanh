@@ -4,7 +4,7 @@
 @section('main')
 <div class="container">
 
-    <form action="{{route('category.store', ['id'=>$model->id] )}}" method="POST" role="form">
+    <form action="{{route('category.update', ['id'=>$model->id] )}}" method="POST" role="form">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <legend>Form add new</legend>
@@ -16,12 +16,12 @@
 
         <div class="radio">
             <label>
-                <input type="radio" name="status" id="input" value="0">
-                Un public
+                <input type="radio" name="status" id="input" value="1" <?php echo $model->status == 1 ? 'checked' : ''; ?>>
+                Public
             </label>
             <label>
-                <input type="radio" name="status" id="input" value="1" checked>
-                Public
+                <input type="radio" name="status" id="input" value="0" <?php echo $model->status == 0 ? 'checked' : ''; ?>>
+                Un public
             </label>
         </div>
         <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?')">Save</button>

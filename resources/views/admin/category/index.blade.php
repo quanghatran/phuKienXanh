@@ -26,6 +26,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Status</th>
+                <th>Total Product</th>
                 <th>Created at</th>
                 <th></th>
             </tr>
@@ -37,6 +38,7 @@
                 <td>{{$cat->id}} </td>
                 <td>{{$cat->name}} </td>
                 <td>{{$cat->status}} </td>
+                <td>{{$cat->products->count()}}</td>
                 <td>{{$cat->created_at}} </td>
                 <td>
 
@@ -44,8 +46,7 @@
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
 
-                        <a href="{{route('category.edit', ['id'=>$cat->id])}}" type="button"
-                            class="btn btn-xs btn-primary">Edit</a>
+                        <a href="{{route('category.edit', ['id'=>$cat->id])}}" type="button" class="btn btn-xs btn-primary">Edit</a>
                         <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure!')">Delete
                         </button>
                     </form>

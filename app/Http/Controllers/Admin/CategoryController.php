@@ -32,7 +32,8 @@ class CategoryController extends Controller
     public function update($id, Request $request)
     {
         $request->offsetUnset('_token'); // hàm để loại bỏ 1 tham số trong trường thông tin
-        $request->offsetUnset('method'); // hàm để loại bỏ 1 tham số trong trường thông tin
+        $request->offsetUnset('_method'); // hàm để loại bỏ 1 tham số trong trường thông tin
+        // dd($request->all());
 
         // $request->only('name','status'); 
         // hàm để lấy ra những tham số trong trường thông tin

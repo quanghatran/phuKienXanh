@@ -13,7 +13,7 @@ $images = json_decode($model->image_list);
     <div class="row">
         <div class="col-md-5">
             <!-- <img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 100%;"> -->
-            <img src="{{$model->image}}" alt="" style="width: 100%;">
+            <img src="{{$model->image}}" alt="image" style="width: 100%;">
 
             <!-- hiển thị ra danh sách images sản phẩm nếu có  -->
             @if(is_array($images))
@@ -21,7 +21,7 @@ $images = json_decode($model->image_list);
                 <hr>
                 @foreach($images as $img)
                 <div class="col-md-4">
-                    <img src="{{$img}}" alt="image" style="width: 100%;">
+                    <img src="{{$img}}" alt="image" style="width: 100%; height: 150px; border:0;overflow-y:auto; background-size: cover;">
                 </div>
                 @endforeach
             </div>

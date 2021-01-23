@@ -46,8 +46,22 @@ class ProductController extends Controller
     // phương thức chỉnh sửa sản phẩm
     public function update($id, Request $request)
     {
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'category' => 'required',
+        //     'slug' => 'required|unique:product,slug',
+        //     'price' => 'required|numeric|min:0|not_in:0',
+        //     'sale_price' => 'required|numeric|min:0|lt:price',
+        // ], [
+        //     'name.required' => 'Tên sản phẩm không được để trống',
+        //     'name.unique' => 'Tên sản phẩm đã có',
+
+        //     'slug.required' => 'Tên đường dẫn SEO không được để trống',
+        //     'slug.unique' => 'Tên slug mục đã có',
+        // ]);
+
         $request->offsetUnset('_token'); // hàm để loại bỏ 1 tham số trong trường thông tin
-        $request->offsetUnset('method'); // hàm để loại bỏ 1 tham số trong trường thông tin
+        $request->offsetUnset('_method'); // hàm để loại bỏ 1 tham số trong trường thông tin
 
         // $request->only('name','status'); 
         // hàm để lấy ra những tham số trong trường thông tin
@@ -76,6 +90,7 @@ class ProductController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
+            'category' => 'required',
             'slug' => 'required|unique:product,slug',
             'price' => 'required|numeric|min:0|not_in:0',
             'sale_price' => 'required|numeric|min:0|lt:price',
