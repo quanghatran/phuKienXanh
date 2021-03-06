@@ -14,23 +14,50 @@
 <body>
 
     <nav class="navbar navbar-inverse">
-        <a class="navbar-brand" href="">Title</a>
+        <!-- <a class="navbar-brand" href="">Title</a> -->
         <ul class="nav navbar-nav">
             <li class="active">
                 <a href="{{route('home')}}">Home</a>
             </li>
             <li>
-                <a href="{{ route('about')}}">About</a>
+                <a href="#">About</a>
             </li>
             <li>
-                <a href="{{ route('cate')}}">Category</a>
+                <a href="#">Category</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+                <a href="{{route('home')}}">Cart ( {{$cart_total}} )</a>
             </li>
         </ul>
     </nav>
 
     <div class="container">
-        @yield('main')
-        @yield('seconds')
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Category</h3>
+                    </div>
+
+                    <ul class="list-group">
+
+                        @foreach($category as $cat)
+                        <li class="list-group-item">
+                            <span class="badge">{{$cat->products->count()}}</span>
+                            <a href="{{route('view',['slug' =>$cat->slug])}}"> {{$cat->name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                @yield('main')
+            </div>
+        </div>
+
 
     </div>
 

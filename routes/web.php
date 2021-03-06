@@ -11,11 +11,20 @@
 |
 */
 
-Route::get('gioi-thieu', function () {
-    return view('about');
-})->name('about');
+// Route::get('gioi-thieu', function () {
+//     return view('about');
+// })->name('about');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware'=> 'auth'], function () {
+
+// Route::get('', function () {
+//     return "<h2 >test content</h2>";
+// })->name('about');
+
+Route::get('', 'HomeController@index')->name('home');
+Route::get('/{slug}', 'HomeController@view')->name('view');
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
 
     Route::get('home', 'AdminController@index')->name('admin');
     Route::get('logout', 'AdminController@logout')->name('logout');
